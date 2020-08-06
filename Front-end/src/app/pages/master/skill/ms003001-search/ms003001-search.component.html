@@ -1,0 +1,177 @@
+
+<app-breadcrumb-share [parrentBreabcrumb]="'Skill'" [childBreabcrumb]="'List'" ></app-breadcrumb-share>
+<div class="col-md-12">
+    <fieldset class="scheduler-border">
+        <legend
+            class="scheduler-border"
+            (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+        >
+            {{'master.skill.list.button.search'| translate}}
+        </legend>
+        <div
+            id="collapseExample"
+            [ngbCollapse]="isCollapsed"
+        >
+            <div class="card card-master">
+                <div class="card-body search-body">
+                    <form  [formGroup]="FormSearch" (ngSubmit)="searchSkill()" >
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="Code">
+                                {{'master.skill.list.table.skill-code'| translate}}
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [formControl]="skillCode"
+                                formControlName="skillCode"
+                                placeholder
+                            >
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="Name">
+                                {{'master.skill.list.table.skill-name'| translate}}
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [formControl]="skillName"
+                                formControlName="skillName"
+                                placeholder
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button
+                                (click)="searchSkill()"
+                                type="submit"
+                                class="btn  btn-primary btn-sm btn-master"
+                            >
+                                <i class="feather icon-search"></i>
+                                {{'master.skill.list.button.search'| translate}}
+                            </button>
+                            <button
+                                type="submit"
+                                class="btn   btn-secondary  btn-sm btn-master"
+                            >
+                                <i class="feather icon-refresh-ccw"></i>
+                                {{'master.skill.list.button.refresh'| translate}}
+                                
+                            </button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12">
+    <div class="funtion">
+        <button
+            type="button"
+            class="btn  btn-primary btn-sm btn-master"
+            [routerLink]="['./create']"
+        >
+            <i class="feather icon-plus"></i>
+            {{'master.skill.list.button.create'| translate}}
+        </button>
+        <button
+            type="button"
+            (click)="deleteSkill()"
+            class="btn  btn-{{this.remove}} btn-sm btn-master"
+        >
+            <i class="feather icon-trash"></i>
+            {{'master.skill.list.button.delete'| translate}}
+        </button>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card table-card">
+        <div class="d-flex justify-content-between panigator-responsive">
+            <div class="top-page-size">
+                <p class="text-panigator">
+                    {{'master.skill.list.p.display'| translate}}
+                </p>
+                <select
+                    class="form-control form-control-sm page-size"
+                    style="width: auto"
+                    name= 'pageSize'
+                    (change)="changePageSize($event.target.value)"
+                >
+                    <option
+                        *ngFor="let option of pageOpiton"
+                        [selected]="option === pageSize"
+                        [value]="option"
+                    >
+                        {{option}}
+                    </option>
+                </select>
+                <p class="text-panigator">
+                    {{'master.skill.list.p.of'| translate}} {{totalRecord}}
+                    {{'master.skill.list.p.record'| translate}}
+                </p>
+            </div>
+            <ngb-pagination
+                [collectionSize]="totalRecord"
+                (pageChange)="pageChangeOutput($event)"
+                [(page)]='page'
+                [pageSize]='pageSize'
+                [maxSize]='maxSize'
+                [boundaryLinks]="true"
+            >
+            </ngb-pagination>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="remove-th th-5 text-center">  
+                             <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task text-center" >
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-label"></span>
+                        </label>
+                        </th>
+                        <th class="th-5 text-center">{{'master.skill.list.table.skill-No.'| translate}}</th>
+                        <th class="th-15 text-left">
+                            {{'master.skill.list.table.skill-code'| translate}}
+                        </th>
+                        <th class="th-15 text-left">
+                            {{'master.skill.list.table.skill-name'| translate}}
+                        </th>
+                        <th  class="th-60 text-left">   {{'master.skill.list.table.description'| translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <div *ngIf="departmentList.length > 0">
+
+                    </div> -->
+                    <ng-container *ngFor="let item of skillLists; let i = index">
+                        <tr *ngIf="item">
+                            <td class="text-center">
+                                <div class="chk-option">
+                                    <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task text-center" >
+                                        <input type="checkbox" class="custom-control-input" (change)="onItemChecked(item.skillCode, $event)"
+                                        [checked]="setOfCheckedId.has(item.skillCode)">
+                                        <span class="custom-control-label"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="text-right">{{i+1}}.</td>
+                            <td >{{item.skillCode}}</td>
+                            <td
+                                [routerLink]="['./detail/',item.deparmentID]"
+                                routerLinkActive="router-link-active" >
+                                {{item.skillName}}
+                            </td>
+                            <td>{{item.skillDescription}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

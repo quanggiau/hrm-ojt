@@ -1,0 +1,71 @@
+<app-breadcrumb-share [parrentBreabcrumb]="'Department'" [childBreabcrumb]="'Details'"
+  [parrentBreabcrumbUrl]="'/department'">
+</app-breadcrumb-share>
+<div class="col-sm-12">
+  <div class="card">
+      <div class="card-header">
+          <h5>{{'master.department.detail.label.title-name'| translate}}  </h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formData" (ngSubmit)="submitForm(formData.value)" class="needs-validation" novalidate>
+          <div class="form-row justify-content-center">
+            <div class="col-md-4 mb-3" *ngIf="!showId">
+              <label>Department ID</label>
+              <input type="text" class="form-control form-control-sm" placeholder="Id" formControlName="deparmentID">
+            </div>
+            <div class="col-md-3 mb-3">
+              <label  class="floating-label">
+                {{'master.department.detail.label.departmentCode'| translate}}
+                <i class="color-red">*</i>
+              </label>
+              <input type="text" class="form-control form-control-sm" placeholder  formControlName="departmentCode"
+                [ngClass]="{ 'is-invalid': submitted && f.departmentCode.errors }">
+                <div *ngIf="submitted && f.departmentCode.errors" class="invalid-feedback">
+                  <div *ngIf="f.departmentCode.errors.required">Errors</div>
+                  <div *ngIf="f.departmentCode.errors.minlength">Min Length</div>
+                  <div *ngIf="f.departmentCode.errors.maxlength">Max Length</div>
+                  <div *ngIf="f.departmentCode.errors.pattern">Pattern</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label class="floating-label">
+                {{'master.department.detail.label.department-name'| translate}}
+                <i class="color-red">*</i>
+              </label>
+              <input type="text" class="form-control form-control-sm" placeholder  formControlName="departmentName"
+                [ngClass]="{ 'is-invalid': submitted && f.departmentName.errors }">
+              <!-- <div
+                          class="invalid-feedback"
+                          *ngIf="displayMessage.departmentName"
+                      >
+                          {{displayMessage.departmentName | translate}}
+                      </div> -->
+              <div *ngIf="submitted && f.departmentName.errors" class="invalid-feedback">
+                <div *ngIf="f.departmentName.errors.required">Errors</div>
+                <div *ngIf="f.departmentName.errors.minlength">Min Length</div>
+                <div *ngIf="f.departmentName.errors.maxlength">Max Length</div>
+                <div *ngIf="f.departmentName.errors.pattern">Pattern</div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>
+                {{'master.department.detail.label.description'| translate}}
+              </label>
+              <input type="text" class="form-control form-control-sm" placeholder 
+                formControlName="departmentDescription" [ngClass]="{ 'is-invalid': submitted && f.departmentDescription.errors }">
+              <div *ngIf="submitted && f.departmentDescription.errors" class="invalid-feedback">
+                <div *ngIf="f.departmentDescription.errors.required">Errors</div>
+                <div *ngIf="f.departmentDescription.errors.minlength">Min Length</div>
+                <div *ngIf="f.departmentDescription.errors.maxlength">Max Length</div>
+                <div *ngIf="f.departmentDescription.errors.pattern">Pattern</div>
+                <!-- <div *ngIf="formData.get("departmentDescription").errors?.err"> -->
+                  Pattern</div>
+              </div>
+            </div>
+          <button class="btn btn-primary btn-sm" type="submit">
+            {{'master.department.detail.button.save'| translate}}
+          </button>
+        </form>
+      </div>
+  </div>
+</div>

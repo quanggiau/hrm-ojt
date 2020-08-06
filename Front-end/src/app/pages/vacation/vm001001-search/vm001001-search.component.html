@@ -1,0 +1,269 @@
+
+<app-breadcrumb-share [parrentBreabcrumb]="'Department'" [childBreabcrumb]="'List'" ></app-breadcrumb-share>
+<div class="col-md-12">
+    <fieldset class="scheduler-border">
+        <legend
+            class="scheduler-border"
+            (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+        >
+            {{'master.department.list.button.search'| translate}}
+        </legend>
+        <div
+            id="collapseExample"
+            [ngbCollapse]="isCollapsed"
+        >
+            <div class="card card-master">
+                <div class="card-body search-body">
+                    <form [formGroup]="formSearch" (ngSubmit)="submitForm(formSearch.value)" >
+                        <div class="form-group row">
+                       
+                            <div class="col-sm-3">
+                                <label >
+                                    {{'master.department.list.table.derpartment-name'| translate}}
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    formControlName="departmentName"
+                                     [ngClass]="{ 'is-invalid': submitted && f.departmentName.errors }" 
+                                >
+                                <div *ngIf="submitted && f.departmentName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.departmentName.errors.maxLength">Max Lenght</div>
+                                  </div>
+                            </div> 
+                             <div class="col-sm-3">
+                                  <label>
+                                    Start Date
+                                </label>
+                                    <div class="input-group">
+                                      <input class="form-control form-control-sm" placeholder="dd/mm/yyyy"
+                                             name="d1"  formControlName="startDate" ngbDatepicker #d1="ngbDatepicker"
+                                             [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }"
+                                            >
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                                      </div>
+                                    </div>
+                                <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.startDate.errors.ptDate">Pattern</div>
+                                  </div>
+                            </div>
+                            <div class="col-sm-3">
+                              
+                                <label>
+                                    End Date
+                                </label>
+                                    <div class="input-group">
+                                      <input class="form-control form-control-sm" placeholder="dd/mm/yyyy"
+                                             name="d2"  formControlName="endDate" ngbDatepicker #d2="ngbDatepicker"
+                                             [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }"
+                                            >
+                                      <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                                      </div>
+                                    </div>
+                                <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+                                    <div *ngIf="f.endDate.errors.ptDate">Pattern</div>
+                                  </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label >
+                                    Employee Id
+                                    <!-- {{'master.department.list.table.derpartment-name'| translate}} -->
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    formControlName="employeeId"
+                                >
+                            </div> 
+                            
+                        </div>
+                        <div class="form-group row">
+                             <div class="col-sm-3">
+                                <label>
+                                    Employee Name
+                                    <!-- {{'master.department.list.table.derpartment-code'| translate}} -->
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control form-control-sm"
+                                    formControlName="employeeName"
+                                >
+                            </div>  
+                            <div class="col-sm-3">
+                                <label>
+                                    Status
+                                    <!-- {{'master.department.list.table.derpartment-code'| translate}} -->
+                                </label>
+                                <select class="form-control form-control-sm" formControlName="status"
+                                >
+                                    <option>- - - status</option>
+                                </select>
+                            </div> 
+                        </div>
+                   
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button
+                                type="submit"
+                                class="btn  btn-primary btn-sm btn-master"
+                            >
+                                <i class="feather icon-search"></i>
+                                {{'master.department.list.button.search'| translate}}
+                            </button>
+                            <button
+                                type="button"
+                                class="btn   btn-secondary  btn-sm btn-master"
+                            >
+                                <i class="feather icon-refresh-ccw"></i>
+                                {{'master.department.list.button.refresh'| translate}}
+                                
+                            </button>
+                        </div>
+                    </div>
+                </form> 
+
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12">
+    <div class="funtion">
+        <button
+            type="button"
+            class="btn  btn-primary btn-sm btn-master"
+            [routerLink]="['./create']"
+        >
+            <i class="feather icon-plus"></i>
+            {{'master.department.list.button.create'| translate}}
+        </button>
+        <button
+            type="button"
+            (click)="deleteVacation()"
+            class="btn  btn-outline-danger btn-sm btn-master"
+        >
+            <i class="feather icon-trash"></i>
+            {{'master.department.list.button.delete'| translate}}
+        </button>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card table-card">
+        <div class="d-flex justify-content-between panigator-responsive">
+            <div class="top-page-size">
+                <p class="text-panigator">
+                    {{'master.department.list.p.display'| translate}}
+                </p>
+                <select
+                    class="form-control form-control-sm page-size"
+                    style="width: auto"
+                    name="pageSize"
+                    (change)="changePageSize($event.target.value)"
+                >
+                    <option
+                        *ngFor="let option of pageOpiton"
+                        [selected]="option === pageSize"
+                        [value]="option"
+                    >
+                        {{option}}
+                    </option>
+                </select>
+                <p class="text-panigator">
+                    {{'master.department.list.p.of'| translate}} {{totalRecord}}
+                    {{'master.department.list.p.record'| translate}}
+                </p>
+            </div>
+            <ngb-pagination
+                [collectionSize]="totalRecord"
+                (pageChange)="pageChangeOutput($event)"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+            >
+            </ngb-pagination>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="remove-th th-5 text-center">  
+                             <!-- <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task text-center" >
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-label"></span>
+                        </label> -->
+                        STT
+                        </th>
+                        <th>EmployeeID</th>
+                        <th>
+                            <!-- {{'master.department.list.table.derpartment-code'| translate}} -->
+                            Employee
+                        </th>
+                        <th >
+                            Department
+                            <!-- {{'master.department.list.table.derpartment-name'| translate}} -->
+                        </th>
+                        <th> 
+                            Title
+                              <!-- {{'master.department.list.table.description'| translate}} -->
+                        </th>
+                        <th> 
+                            StartDate
+                              <!-- {{'master.department.list.table.description'| translate}} -->
+                        </th>
+                        <th> 
+                            EndDate
+                              <!-- {{'master.department.list.table.description'| translate}} -->
+                        </th>
+                        <th> 
+                            Approve
+                              <!-- {{'master.department.list.table.description'| translate}} -->
+                        </th>
+                        <th> 
+                            Status
+                              <!-- {{'master.department.list.table.description'| translate}} -->
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let item of vacationList; let i = index ">
+                        <tr *ngIf="item" [routerLink]="['./detail',item.vacationID]" routerLinkActive="router-link-active" >
+                            <td class="text-center">
+                                <!-- <div class="chk-option">
+                                    <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task text-center" >
+                                        <input type="checkbox" class="custom-control-input" (change)="onItemChecked(item.deparmentID, $event)"
+                                        [checked]="setOfCheckedId.has(item.deparmentID)">
+                                        <span class="custom-control-label"></span>
+                                    </label>
+                                </div> -->{{i + 1}}
+                            </td>
+                            <td
+                            [routerLink]="['/detail/',item.employeeId]"
+                            routerLinkActive="router-link-active">{{item.employeeId}}</td>
+                            <td  
+                             [routerLink]="['/detail/',item.employeeId]"
+                            routerLinkActive="router-link-active">{{item.employeeName}}</td>
+                            <td
+                                [routerLink]="['/department/detail/',item.departmentId]"
+                                routerLinkActive="router-link-active"
+                            >
+                                {{item.departmentName}}
+                            </td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.startDate}}</td>
+                            <td>{{item.endDate}}</td>
+                            <td>{{item.approve}}</td>
+                            <td>{{item.status}}</td>
+
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

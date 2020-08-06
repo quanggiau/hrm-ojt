@@ -1,0 +1,84 @@
+{
+    "master": {
+        "department": {
+            "list": {
+                "name": "Tên bộ phận",
+                "button": {
+                    "search": "Tìm kiếm",
+                    "create": "Thêm",
+                    "delete": "Xóa",
+                    "refresh": "Làm mới"
+                },
+                "p": {
+                    "display": "Hiển thị",
+                    "of": "của",
+                    "record": "bản ghi"
+                },
+                "table": {
+                    "id": "Id",
+                    "derpartment-code": "Mã bộ phận",
+                    "description": "Mô tả",
+                    "derpartment-name": "Tên bộ phận",
+                    "derpartment-content": "Nội dung"
+                }
+            },
+            "detail": {
+                "label": {
+                    "title-name": "Thêm mới phòng ban",
+                    "department-name": "Tên bộ phận",
+                    "description": "Mô tả",
+                    "departmentCode":"Mã bộ phận"
+                },
+                "button": {
+                    "save": "Lưu",
+                    "back": "Quay lại"
+                    
+                }
+            }
+        },
+
+        "skill": {
+            "list": {
+                "name": "Tên kỹ năng",
+                "button": {
+                    "search": "Tìm kiếm",
+                    "create": "Thêm",
+                    "delete": "Xóa",
+                    "refresh": "Làm mới"
+                },
+                "p": {
+                    "display": "Hiển thị",
+                    "of": "của",
+                    "record": "bản ghi"
+                },
+                "table": {
+                    "id": "Id",
+                    "skill-code": "Mã kỹ năng",
+                    "description": "Mô tả",
+                    "skill-name": "Tên kỹ năng",
+                    "skill-content": "Nội dung",
+                    "skill-No.": "STT"
+                }
+            },
+            "detail": {
+                "label": {
+                    "title-name": "Thêm mới kỹ năng",
+                    "skill-name": "Tên kỹ năng",
+                    "description": "Mô tả",
+                    "skillCode":"Mã kỹ năng"
+                },
+                "button": {
+                    "save": "Lưu",
+                    "back": "Quay lại"
+                    
+                }
+            }
+        }
+    },
+    "validation-messages": {
+        "required": "không được trống",
+        "minlength": "quá ngắn",
+        "maxlength": "quá dài",
+        "pattern": {}
+    }
+}

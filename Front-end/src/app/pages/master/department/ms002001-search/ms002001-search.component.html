@@ -1,0 +1,344 @@
+
+<app-breadcrumb-share [parrentBreabcrumb]="'Department'" [childBreabcrumb]="'List'" ></app-breadcrumb-share>
+<!-- <div class="col-md-12">
+    <fieldset class="scheduler-border">
+        <legend
+            class="scheduler-border"
+            (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+        >
+            {{'master.department.list.button.search'| translate}}
+        </legend>
+        <div
+            id="collapseExample"
+            [ngbCollapse]="isCollapsed"
+        >
+            <div class="card card-master">
+                <div class="card-body search-body">
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label for="Code">
+                                {{'master.department.list.name'| translate}}
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                id="inputPassword"
+                                [formControl]="departmentName"
+                                placeholder
+                            >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button
+                                (click)="searchDepartment()"
+                                type="submit"
+                                class="btn  btn-primary btn-sm btn-master"
+                            >
+                                <i class="feather icon-search"></i>
+                                {{'master.department.list.button.search'| translate}}
+                            </button>
+                            <button
+                                type="submit"
+                                class="btn   btn-secondary  btn-sm btn-master"
+                            >
+                                <i class="feather icon-refresh-ccw"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12">
+    <div class="funtion">
+        <button
+            type="button"
+            class="btn  btn-primary btn-sm btn-master"
+            [routerLink]="['/master/department-add']"
+        >
+            <i class="feather icon-plus"></i>
+            {{'master.department.list.button.create'| translate}}
+        </button>
+        <button
+            type="button"
+            (click)="deleteDepartment()"
+            class="btn  btn-{{this.remove}} btn-sm btn-master"
+        >
+            <i class="feather icon-trash"></i>
+            {{'master.department.list.button.delete'| translate}}
+        </button>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card table-card card-master">
+        <div class="d-flex justify-content-between panigator-responsive">
+            <div class="top-page-size">
+                <p class="text-panigator">
+                    {{'master.department.list.p.display'| translate}}
+                </p>
+                <select
+                    class="form-control form-control-sm page-size"
+                    style="width: auto"
+                    name="pageSize"
+                    (change)="changePageSize($event.target.value)"
+                >
+                    <option
+                        *ngFor="let option of pageOpiton"
+                        [selected]="option === pageSize"
+                        [value]="option"
+                    >
+                        {{option}}
+                    </option>
+                </select>
+                <p class="text-panigator">
+                    {{'master.department.list.p.of'| translate}} {{totalRecord}}
+                    {{'master.department.list.p.record'| translate}}
+                </p>
+            </div>
+            <ngb-pagination
+                [collectionSize]="totalRecord"
+                (pageChange)="pageChangeOutput($event)"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+            >
+            </ngb-pagination>
+        </div>
+        <div class="table-responsive table-body">
+            <table class="table table-hover mb-0 tbl-master">
+                <thead>
+                    <tr>
+                        <th class="remove-th th-5 text-center"></th>
+                        <th class="th-5">#</th>
+                        <th class="th-10">
+                            {{'master.department.list.table.id'| translate}}
+                        </th>
+                        <th class="text-left">
+                            {{'master.department.list.table.derpartment-name'| translate}}
+                        </th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let item of departmentList">
+                        <tr *ngIf="item">
+                            <td class="text-center">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input
+                                            type="checkbox"
+                                            (change)="onItemChecked(item.deparmentID, $event)"
+                                            [checked]="setOfCheckedId.has(item.deparmentID)"
+                                            aria-label="Checkbox for following text input"
+                                        >
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{item.deparmentID}}</td>
+                            <td>{{item.departmentCode}}</td>
+                            <td
+                                [routerLink]="['./detail/',item.deparmentID]"
+                                routerLinkActive="router-link-active"
+                            >
+                                {{item.departmentName}}
+                            </td>
+                            <td>{{item.departmentDescription}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+<div class="col-md-12">
+    <fieldset class="scheduler-border">
+        <legend
+            class="scheduler-border"
+            (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+        >
+            {{'master.department.list.button.search'| translate}}
+        </legend>
+        <div
+            id="collapseExample"
+            [ngbCollapse]="isCollapsed"
+        >
+            <div class="card card-master">
+                <div class="card-body search-body">
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <label for="Code">
+                                {{'master.department.list.table.derpartment-code'| translate}}
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [formControl]="departmentName"
+                                placeholder
+                            >
+                        </div>
+                        <!-- <div class="col-sm-3">
+                            <label for="Code">
+                                {{'master.department.list.table.derpartment-name'| translate}}
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [formControl]="departmentName"
+                                placeholder
+                            >
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="Code">
+                                {{'master.department.list.table.description'| translate}}
+                            </label>
+                            <input
+                                type="text"
+                                class="form-control form-control-sm"
+                                [formControl]="departmentName"
+                                placeholder
+                            >
+                        </div> -->
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button
+                                (click)="searchDepartment()"
+                                type="submit"
+                                class="btn  btn-primary btn-sm btn-master"
+                            >
+                                <i class="feather icon-search"></i>
+                                {{'master.department.list.button.search'| translate}}
+                            </button>
+                            <button
+                                type="submit"
+                                class="btn   btn-secondary  btn-sm btn-master"
+                            >
+                                <i class="feather icon-refresh-ccw"></i>
+                                {{'master.department.list.button.refresh'| translate}}
+                                
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div class="col-md-12">
+    <div class="funtion">
+        <button
+            type="button"
+            class="btn  btn-primary btn-sm btn-master"
+            [routerLink]="['./create']"
+        >
+            <i class="feather icon-plus"></i>
+            {{'master.department.list.button.create'| translate}}
+        </button>
+        <button
+            type="button"
+            (click)="deleteDepartment()"
+            class="btn  btn-{{this.remove}} btn-sm btn-master"
+        >
+            <i class="feather icon-trash"></i>
+            {{'master.department.list.button.delete'| translate}}
+        </button>
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="card table-card">
+        <div class="d-flex justify-content-between panigator-responsive">
+            <div class="top-page-size">
+                <p class="text-panigator">
+                    {{'master.department.list.p.display'| translate}}
+                </p>
+                <select
+                    class="form-control form-control-sm page-size"
+                    style="width: auto"
+                    name="pageSize"
+                    (change)="changePageSize($event.target.value)"
+                >
+                    <option
+                        *ngFor="let option of pageOpiton"
+                        [selected]="option === pageSize"
+                        [value]="option"
+                    >
+                        {{option}}
+                    </option>
+                </select>
+                <p class="text-panigator">
+                    {{'master.department.list.p.of'| translate}} {{totalRecord}}
+                    {{'master.department.list.p.record'| translate}}
+                </p>
+            </div>
+
+
+
+            <ngb-pagination
+                [collectionSize]="totalRecord"
+                (pageChange)="pageChangeOutput($event)"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [maxSize]="maxSize"
+                [boundaryLinks]="true"
+            >
+            </ngb-pagination>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="remove-th th-5 text-center">  
+                             <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task text-center" >
+                            <input type="checkbox" class="custom-control-input">
+                            <span class="custom-control-label"></span>
+                        </label>
+                        </th>
+                        <th class="th-5 text-center">#</th>
+                        <th class="th-5 text-center">
+                            {{'master.department.list.table.derpartment-code'| translate}}
+                        </th>
+                        <th class="text-left">
+                            {{'master.department.list.table.derpartment-name'| translate}}
+                        </th>
+                        <th>   {{'master.department.list.table.description'| translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <div *ngIf="departmentList.length > 0">
+
+                    </div> -->
+                    <ng-container *ngFor="let item of departmentLists">
+                        <tr *ngIf="item">
+                            <td class="text-center">
+                                <div class="chk-option">
+                                    <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task text-center" >
+                                        <input type="checkbox" class="custom-control-input" (change)="onItemChecked(item.deparmentID, $event)"
+                                        [checked]="setOfCheckedId.has(item.deparmentID)">
+                                        <span class="custom-control-label"></span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="text-center">{{item.deparmentID}}</td>
+                            <td >{{item.departmentCode}}</td>
+                            <td
+                                [routerLink]="['./detail/',item.deparmentID]"
+                                routerLinkActive="router-link-active"
+                            >
+                                {{item.departmentName}}
+                            </td>
+                            <td>{{item.departmentDescription}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

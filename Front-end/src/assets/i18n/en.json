@@ -1,0 +1,91 @@
+{
+    "master": {
+        "department": {
+            "list": {
+                "name": "Department name",
+                "button": {
+                    "search": "Search",
+                    "create": "Create",
+                    "delete": "Delete",
+                    "refresh": "Refresh"
+                },
+                "p": {
+                    "display": "Display",
+                    "of": "of",
+                    "record": "record"
+                },
+                "table": {
+                    "id": "Id",
+                    "derpartment-code": "Department Code",
+                    "description": "Description",
+                    "derpartment-name": "Department Name",
+                    "derpartment-content": "Content"
+                }
+            },
+            "detail": {
+                "label": {
+                    "title-name": "Department Add",
+                    "department-name": "Department Name",
+                    "description": "Description",
+                    "departmentCode":"Department Code"
+
+                },
+                "button": {
+                    "save": "Save",
+                    "back": "Back"
+                    
+
+                }
+                
+            }
+        },
+
+        "skill": {
+            "list": {
+                "name": "Skill name",
+                "button": {
+                    "search": "Search",
+                    "create": "Create",
+                    "delete": "Delete",
+                    "refresh": "Refresh"
+                },
+                "p": {
+                    "display": "Display",
+                    "of": "of",
+                    "record": "record"
+                },
+                "table": {
+                    "id": "Id",
+                    "skill-code": "Skill Code",
+                    "description": "Description",
+                    "skill-name": "Skill Name",
+                    "skill-content": "Content",
+                    "skill-No.": "No."
+                }
+            },
+            "detail": {
+                "label": {
+                    "title-name": "Skill Add",
+                    "skill-name": "Skill Name",
+                    "description": "Description",
+                    "skillCode":"Skill Code"
+
+                },
+                "button": {
+                    "save": "Save",
+                    "back": "Back"
+                    
+
+                }
+                
+            }
+        }
+    },
+    "validation-messages": {
+        "required": "field is required",
+        "minlength": "min length",
+        "maxlength": "max length",
+        "pattern": {}
+    }
+
+}
